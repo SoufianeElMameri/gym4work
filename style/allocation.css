@@ -1,0 +1,283 @@
+.allocation {
+  max-width:1280px;
+  margin:auto;
+  padding:120px 64px 96px;
+  color:#202b30
+}
+
+.allocation-heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:40px;
+  margin-bottom:88px
+}
+
+.allocation-heading h2 {
+  font-size:clamp(44px,5vw,72px);
+  font-weight:450;
+  line-height:1.07;
+  letter-spacing:-.05em;
+  margin:0
+}
+
+.allocation-heading h2 span {
+  color:#858d8e
+}
+
+.allocation-heading>p {
+  font-size:16px;
+  line-height:1.8;
+  color:#727a7c;
+  margin:0 0 5px
+}
+
+.allocation-columns {
+  display:grid;
+  grid-template-columns:repeat(3,1fr)
+}
+
+.allocation-gym {
+  text-align:center;
+  padding:0 32px 38px;
+  border-right:1px solid #d8dedb
+}
+
+.allocation-gym:first-child {
+  padding-left:0
+}
+
+.allocation-gym:last-child {
+  border:0;
+  padding-right:0
+}
+
+.allocation-logo {
+  height:68px;
+  width:148px;
+  margin:0 auto 32px;
+  display:flex;
+  align-items:center;
+  justify-content:center
+}
+
+.allocation-logo img {
+  max-width:100%;
+  height:100%;
+  object-fit:contain
+}
+
+.allocation-logo-dark {
+  background:#25323b;
+  padding:17px 12px;
+  height:68px
+}
+
+.allocation-interest {
+  font-size:14px;
+  color:#788184;
+  margin:0 0 30px
+}
+
+.allocation-interest strong {
+  font-weight:500;
+  color:#303b40
+}
+
+.allocation-count {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:clamp(10px,2vw,30px)
+}
+
+.allocation-count output {
+  font-size:clamp(72px,8vw,112px);
+  line-height:1.15;
+  font-weight:400;
+  letter-spacing:-.07em;
+  min-width:1.4em;
+  font-variant-numeric:tabular-nums
+}
+
+.allocation-count button {
+  border:0;
+  border-bottom:1px solid #a9b3b5;
+  background:none;
+  width:36px;
+  height:44px;
+  padding:0;
+  font-size:25px;
+  color:#35454c;
+  cursor:pointer
+}
+
+.allocation-count button:hover:not(:disabled) {
+  color:#16839a;
+  border-color:#16839a
+}
+
+.allocation-count button:disabled {
+  opacity:.25;
+  cursor:default
+}
+
+.allocation-count-label {
+  font-size:13px;
+  color:#737d80;
+  margin:10px 0 28px
+}
+
+.allocation-people {
+  display:flex;
+  justify-content:center;
+  gap:5px;
+  min-height:29px;
+  flex-wrap:wrap
+}
+
+.allocation-people i {
+  width:13px;
+  height:29px;
+  border-radius:8px;
+  background:#e1e5e3;
+  transition:background .2s
+}
+
+.allocation-people i.funded {
+  background:#8cc8d3
+}
+
+.allocation-summary {
+  border-block:1px solid #cbd3d1;
+  padding:32px 0;
+  margin-top:35px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:30px
+}
+
+.allocation-summary>p {
+  display:flex;
+  align-items:center;
+  gap:25px;
+  margin:0
+}
+
+.allocation-summary strong {
+  font-size:76px;
+  line-height:1;
+  font-weight:450;
+  letter-spacing:-.06em;
+  font-variant-numeric:tabular-nums
+}
+
+.allocation-summary p span {
+  font-size:17px;
+  max-width:170px;
+  line-height:1.6
+}
+
+.allocation-summary b {
+  font-weight:500;
+  white-space:nowrap
+}
+
+.allocation-summary>div {
+  font-size:15px;
+  line-height:1.8;
+  text-align:right
+}
+
+.allocation-summary>div span {
+  color:#7d8789
+}
+
+.allocation-note {
+  font-size:12px;
+  color:#7a8586;
+  margin:20px 0 0
+}
+
+@media(max-width:850px) {
+  .allocation {
+    padding:80px 28px
+  }
+
+  .allocation-heading {
+    align-items:flex-start;
+    flex-direction:column;
+    gap:25px;
+    margin-bottom:55px
+  }
+
+  .allocation-gym {
+    padding-inline:16px
+  }
+
+  .allocation-count {
+    gap:8px
+  }
+
+  .allocation-count output {
+    font-size:72px
+  }
+
+  .allocation-logo {
+    width:125px
+  }
+
+}
+
+@media(max-width:580px) {
+  .allocation {
+    padding:65px 24px
+  }
+
+  .allocation-columns {
+    grid-template-columns:1fr
+  }
+
+  .allocation-gym,.allocation-gym:first-child,.allocation-gym:last-child {
+    padding:32px 0;
+    border-right:0;
+    border-bottom:1px solid #d8dedb
+  }
+
+  .allocation-logo {
+    margin-bottom:18px
+  }
+
+  .allocation-interest {
+    margin-bottom:12px
+  }
+
+  .allocation-count output {
+    font-size:90px
+  }
+
+  .allocation-count {
+    gap:35px
+  }
+
+  .allocation-count-label {
+    margin-bottom:20px
+  }
+
+  .allocation-summary {
+    margin-top:20px;
+    align-items:flex-start;
+    flex-direction:column;
+    gap:22px
+  }
+
+  .allocation-summary>div {
+    text-align:left
+  }
+
+  .allocation-summary strong {
+    font-size:66px
+  }
+
+}

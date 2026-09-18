@@ -1,0 +1,412 @@
+.membership-idea {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:800px;
+  background:#fff;
+  overflow:hidden
+}
+
+.membership-copy {
+  padding:100px clamp(32px,6vw,100px);
+  position:relative;
+  z-index:1
+}
+
+.membership-copy h2 {
+  font-size:clamp(42px,4.1vw,66px);
+  font-weight:450;
+  line-height:1.1;
+  letter-spacing:-.055em;
+  margin:0 0 28px
+}
+
+.membership-intro {
+  max-width:340px;
+  font-size:17px;
+  color:#747a7d;
+  line-height:1.7;
+  margin:0 0 40px
+}
+
+.member-options {
+  display:flex;
+  flex-direction:column;
+  gap:8px
+}
+
+.member-option {
+  width:100%;
+  background:transparent;
+  border:0;
+  border-bottom:1px solid #eceeed;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:20px 0;
+  text-align:left;
+  color:#969b9d;
+  cursor:pointer;
+  transition:color .35s
+}
+
+.member-option.selected {
+  color:#202b32
+}
+
+.member-initial {
+  width:38px;
+  height:38px;
+  border:1px solid #dce1e3;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:14px;
+  transition:background .35s
+}
+
+.selected .member-initial {
+  background:#dff1f4;
+  border-color:#dff1f4
+}
+
+.member-option strong {
+  display:block;
+  font-size:23px;
+  font-weight:450
+}
+
+.member-option small {
+  display:block;
+  font-size:13px;
+  margin-top:4px
+}
+
+.member-gym {
+  margin-left:auto;
+  font-size:13px;
+  opacity:0;
+  transition:opacity .35s
+}
+
+.selected .member-gym {
+  opacity:1
+}
+
+.membership-explanation {
+  max-width:320px;
+  margin:35px 0 0;
+  font-size:15px;
+  line-height:1.8;
+  color:#777e82
+}
+
+.membership-display {
+  position:relative;
+  background:#363636;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-width:0;
+  padding:100px 45px 130px;
+  isolation:isolate
+}
+
+.membership-backdrop {
+  position:absolute;
+  inset:15% 8%;
+  background:linear-gradient(90deg,#3d3d3d 50%,#242424 50%);
+  z-index:-1
+}
+
+.access-card {
+  width:100%;
+  max-width:450px;
+  aspect-ratio:1.65;
+  transform:rotate(-24deg);
+  background:#20333f;
+  color:#fff;
+  box-shadow:0 30px 40px #0005,0 2px 3px #0005;
+  border:1px solid #ffffff18;
+  transition:background .65s,color .65s;
+  border-radius:3px
+}
+
+.access-card[data-gym="bd"] {
+  background:#142e30
+}
+
+.access-card[data-gym="westwood"] {
+  background:#f3f2e8;
+  color:#232727
+}
+
+.access-card-content {
+  height:100%;
+  padding:7%;
+  display:flex;
+  flex-direction:column;
+  transition:opacity .22s
+}
+
+.access-card.changing .access-card-content {
+  opacity:0
+}
+
+.access-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:9px;
+  letter-spacing:.15em;
+  opacity:.75
+}
+
+.access-top span:last-child {
+  letter-spacing:-.02em;
+  font-size:12px
+}
+
+.access-logo {
+  width:48%;
+  height:32%;
+  object-fit:contain;
+  object-position:left center;
+  margin:auto 0
+}
+
+.access-bottom {
+  display:flex;
+  justify-content:space-between;
+  align-items:end
+}
+
+.access-name {
+  font-size:24px;
+  font-weight:500;
+  display:block
+}
+
+.access-location {
+  font-size:12px;
+  opacity:.7
+}
+
+.access-type {
+  font-size:8px;
+  line-height:1.6;
+  letter-spacing:.15em;
+  text-align:right
+}
+
+.access-stripe {
+  height:2px;
+  background:currentColor;
+  opacity:.2;
+  margin-top:14px
+}
+
+.membership-pointer {
+  position:absolute;
+  top:50%;
+  left:-30px;
+  width:115px;
+  z-index:2;
+  color:#c2e1e7;
+  transform:translateY(-50%)
+}
+
+.membership-pointer span {
+  font-size:11px;
+  display:block;
+  width:100px;
+  margin-bottom:10px;
+  background:#363636;
+  padding:5px
+}
+
+.membership-pointer i {
+  display:block;
+  height:1px;
+  background:#c2e1e7;
+  position:relative
+}
+
+.membership-pointer i:after {
+  content:'';
+  position:absolute;
+  right:0;
+  top:-3px;
+  width:7px;
+  height:7px;
+  background:#c2e1e7;
+  border-radius:50%
+}
+
+.membership-caption {
+  position:absolute;
+  bottom:75px;
+  left:8%;
+  right:8%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  color:#ddd;
+  font-size:12px
+}
+
+.membership-play {
+  background:none;
+  color:#ddd;
+  border:1px solid #777;
+  border-radius:30px;
+  padding:8px 13px;
+  font-size:11px;
+  cursor:pointer
+}
+
+.membership-example {
+  position:absolute;
+  bottom:36px;
+  left:8%;
+  font-size:11px;
+  color:#aaa;
+  margin:0
+}
+
+@media(min-width:1600px) {
+  .membership-display {
+    padding-inline:100px
+  }
+
+  .access-card {
+    max-width:520px
+  }
+
+}
+
+@media(max-width:1000px) {
+  .membership-copy {
+    padding:75px 32px
+  }
+
+  .membership-display {
+    padding-inline:30px
+  }
+
+  .membership-pointer {
+    left:-15px;
+    width:65px
+  }
+
+  .membership-pointer span {
+    width:100px
+  }
+
+  .member-gym {
+    font-size:11px
+  }
+
+  .access-name {
+    font-size:20px
+  }
+
+  .membership-caption {
+    align-items:flex-start
+  }
+
+}
+
+@media(min-width:701px) and (max-width:1200px) {
+  .membership-pointer {
+    top:calc(50% - 190px);
+    left:8%;
+    width:170px;
+    transform:none;
+    pointer-events:none;
+  }
+
+  .membership-pointer span {
+    width:auto;
+    white-space:nowrap;
+    background:none;
+    padding:0;
+    margin-bottom:14px;
+  }
+
+  .membership-pointer i {
+    width:1px;
+    height:150px;
+    margin-left:12px;
+  }
+
+  .membership-pointer i:after {
+    top:auto;
+    bottom:-3px;
+    right:-3px;
+  }
+}
+
+@media(max-width:700px) {
+  .membership-idea {
+    grid-template-columns:1fr
+  }
+
+  .membership-copy {
+    padding:65px 24px 45px
+  }
+
+  .membership-copy h2 {
+    font-size:46px
+  }
+
+  .membership-intro {
+    margin-bottom:24px
+  }
+
+  .member-option {
+    padding:13px 0
+  }
+
+  .membership-explanation {
+    margin-top:25px;
+    max-width:380px
+  }
+
+  .membership-display {
+    min-height:500px;
+    padding:95px 50px 130px
+  }
+
+  .access-card {
+    max-width:360px
+  }
+
+  .membership-pointer {
+    top:35px;
+    left:24px;
+    width:110px;
+    transform:none
+  }
+
+  .membership-pointer span {
+    width:auto;
+    background:none
+  }
+
+  .membership-caption {
+    bottom:65px
+  }
+
+  .membership-example {
+    bottom:30px
+  }
+
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .access-card,.access-card-content,.member-option,.member-initial,.member-gym {
+    transition:none
+  }
+
+}

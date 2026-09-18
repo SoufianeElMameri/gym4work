@@ -1,0 +1,228 @@
+.audience-showcase {
+  position: relative;
+  width: calc(100% - clamp(48px, 8vw, 128px));
+  max-width: 1536px;
+  margin: clamp(72px, 8vw, 128px) auto 120px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(2, minmax(clamp(430px, 34.25vw, 526px), auto));
+  grid-template-areas: "gym-image company-copy" "gym-copy company-image";
+  overflow: hidden;
+}
+
+.audience-media {
+  min-width: 0;
+  min-height: 0;
+  width: calc(100% - clamp(52px, 5.1vw, 80px));
+  height: calc(100% - clamp(36px, 3.25vw, 50px));
+  overflow: hidden;
+}
+
+.audience-media-gym {
+  grid-area: gym-image;
+  align-self: start;
+  justify-self: start;
+}
+
+.audience-media-company {
+  grid-area: company-image;
+  align-self: end;
+  justify-self: end;
+}
+
+.audience-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.audience-media-gym .audience-photo {
+  object-position: 52% center;
+}
+
+.audience-media-company .audience-photo {
+  object-position: 54% center;
+}
+
+.audience-copy {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(40px, 4vw, 62px) clamp(48px, 7vw, 108px);
+  color: #1c252a;
+}
+
+.audience-copy-company {
+  grid-area: company-copy;
+}
+
+.audience-copy-gym {
+  grid-area: gym-copy;
+}
+
+.audience-copy .overline {
+  margin: 0 0 34px;
+  color: #7b7e7b;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .16em;
+}
+
+.audience-copy h2 {
+  max-width: 600px;
+  margin: 0 0 26px;
+  color: #172126;
+  font-size: clamp(40px, 3.65vw, 56px);
+  font-weight: 450;
+  line-height: 1.08;
+  letter-spacing: -2.7px;
+}
+
+.audience-copy p {
+  max-width: 540px;
+  margin: 0 0 24px;
+  color: #777a77;
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.65;
+}
+
+.audience-copy .audience-detail {
+  margin-top: 4px;
+  color: #777a77;
+}
+
+.audience-link {
+  width: min(100%, 285px);
+  margin-top: 22px;
+  padding: 0 0 10px;
+  border-bottom: 1px solid #b6b8b4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: #202a2f;
+  font-size: 17px;
+}
+
+.audience-link span {
+  font-size: 25px;
+  line-height: 1;
+  transition: transform .2s ease;
+}
+
+.audience-link:hover span {
+  transform: translateX(4px);
+}
+
+.audience-bridge {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  width: 240px;
+  height: 420px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.audience-bridge svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.audience-bridge path {
+  fill: none;
+  stroke: #c6c4be;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.audience-bridge circle {
+  fill: #999891;
+}
+
+.audience-bridge span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 9px 6px;
+  color: #9a9892;
+  font-size: 11px;
+  line-height: 1.45;
+  text-align: center;
+  letter-spacing: .16em;
+}
+
+@media (max-width: 1199px) {
+  .audience-showcase {
+    width: calc(100% - 48px);
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "gym-image" "gym-copy" "company-image" "company-copy";
+    margin-bottom: 80px;
+  }
+
+  .audience-media {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1.5 / 1;
+    align-self: stretch;
+    justify-self: stretch;
+  }
+
+  .audience-copy {
+    min-height: auto;
+    padding: clamp(58px, 8vw, 88px) clamp(26px, 8vw, 90px);
+  }
+
+  .audience-copy h2 {
+    max-width: 680px;
+    font-size: clamp(40px, 7vw, 60px);
+    letter-spacing: -2px;
+  }
+
+  .audience-copy p {
+    max-width: 620px;
+  }
+
+  .audience-copy .overline {
+    margin-bottom: 25px;
+  }
+
+  .audience-bridge {
+    display: none;
+  }
+
+}
+
+@media (max-width: 520px) {
+  .audience-showcase {
+    width: calc(100% - 32px);
+    margin-top: 56px;
+  }
+
+  .audience-media {
+    aspect-ratio: 1.2 / 1;
+  }
+
+  .audience-copy {
+    padding: 54px 24px 66px;
+  }
+
+  .audience-copy h2 {
+    font-size: 39px;
+    letter-spacing: -1.5px;
+  }
+
+  .audience-copy p {
+    font-size: 16px;
+  }
+
+}

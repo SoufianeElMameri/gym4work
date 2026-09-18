@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&display=swap');
+.gym-details {
+  background: #000;
+  color: #fff;
+  border-block: 1px solid #292929;
+  padding: clamp(96px, 11.8vw, 188px) 32px clamp(96px, 11vw, 176px);
+}
+
+.gym-details-inner {
+  max-width: 1110px;
+  margin: 0 auto;
+}
+
+.gym-details h2, .gym-details h3 {
+  font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -.025em;
+}
+
+.gym-details h2 {
+  font-size: clamp(64px, 6.3vw, 100px);
+  line-height: 1.06;
+  margin: 0 0 clamp(65px, 6vw, 96px);
+}
+
+.gym-details-stages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 70px;
+}
+
+.gym-details-stages article {
+  display: flex;
+  flex-direction: column;
+}
+
+.gym-details-stages article:nth-child(2) {
+  text-align: center;
+  align-items: center;
+}
+
+.gym-details-stages article:last-child {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.gym-details h3 {
+  font-size: clamp(30px, 2.6vw, 40px);
+  line-height: 1.12;
+  margin: 0 0 28px;
+}
+
+.gym-details p {
+  max-width: 290px;
+  margin: 0;
+  color: #999;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.gym-details-timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: 27px 1fr 27px 1fr 27px;
+  align-items: center;
+  margin-top: 30px;
+  gap: 16px;
+}
+
+.gym-details-timeline::before {
+  content: '';
+  position: absolute;
+  inset: 50% 0 auto;
+  height: 1px;
+  background: repeating-linear-gradient(to right, #ddd 0 9px, transparent 9px 18px);
+}
+
+.gym-details-timeline i {
+  position: relative;
+  width: 27px;
+  height: 27px;
+  flex: 0 0 27px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.gym-details-timeline span {
+  position: relative;
+  justify-self: center;
+  background: #000;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  padding: 3px 24px;
+  color: #ccc;
+  font-size: 14px;
+  text-align: center;
+}
+
+.gym-details-light {
+  background: #f4f5f3;
+  color: #202623;
+  border-color: #dce0dc;
+}
+
+.gym-details-light h2, .gym-details-light h3 {
+  color: #202623;
+}
+
+.gym-details-light p {
+  color: #686f6b;
+}
+
+.gym-part-label {
+  margin-bottom: 30px;
+  color: #686f6b;
+  font-size: 12px;
+  letter-spacing: .14em;
+}
+
+.gym-details-light .gym-details-timeline::before {
+  background: repeating-linear-gradient(to right, #747b76 0 9px, transparent 9px 18px);
+}
+
+.gym-details-light .gym-details-timeline i {
+  background: #202623;
+}
+
+.gym-details-light .gym-details-timeline span {
+  background: #f4f5f3;
+  color: #424a45;
+  border-color: #747b76;
+}
+
+@media (max-width: 760px) {
+  .gym-details {
+    padding: 80px 24px;
+  }
+
+  .gym-details h2 {
+    font-size: clamp(50px, 10vw, 72px);
+    margin-bottom: 60px;
+  }
+
+  .gym-details-stages {
+    grid-template-columns: 1fr;
+    gap: 45px;
+    border-left: 1px dashed #777;
+    margin-left: 9px;
+    padding-left: 30px;
+  }
+
+  .gym-details-stages article, .gym-details-stages article:nth-child(2), .gym-details-stages article:last-child {
+    position: relative;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .gym-details-stages article::before {
+    content: '';
+    position: absolute;
+    left: -40px;
+    top: 8px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+  }
+
+  .gym-details h3 {
+    font-size: 34px;
+    margin-bottom: 18px;
+  }
+
+  .gym-details p {
+    max-width: 460px;
+  }
+
+  .gym-details-timeline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 12px;
+    margin: 40px 0 0 40px;
+  }
+
+  .gym-details-timeline i, .gym-details-timeline::before {
+    display: none;
+  }
+
+  .gym-details-timeline span {
+    padding-inline: 16px;
+  }
+
+  .gym-details-light .gym-details-stages article::before {
+    background: #202623;
+  }
+
+}
