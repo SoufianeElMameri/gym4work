@@ -23,18 +23,43 @@ if (path === '/gyms') {
 } else if (path === '/contact') {
   document.title = 'Get in touch | Gym4Work';
   const company = new URLSearchParams(location.search).get('audience') === 'company';
-  main.innerHTML = `<section class="contact-page"><div class="overline">LET’S MAKE THE CONNECTION</div><h1>${company ? 'A better fit for your people.' : 'Your next members start here.'}</h1><p>${company ? 'Tell us a little about your company. We’ll help you get started.' : 'Tell us how to reach you. We’ll follow up and prepare your gym’s profile and offer for you.'}</p><form class="contact-form"><div class="field"><label for="audience">I’m getting in touch for</label><select id="audience" name="audience"><option value="gym" ${company?'':'selected'}>A gym</option><option value="company" ${company?'selected':''}>A company</option></select></div><div class="field"><label for="organisation">Gym or company name</label><input id="organisation" name="organisation" autocomplete="organization" required maxlength="150" placeholder="Your organisation"></div><div class="field"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" required maxlength="100" placeholder="First and last name"></div><div class="field"><label for="email">Work email</label><input id="email" type="email" name="email" autocomplete="email" required maxlength="254" placeholder="you@company.com"></div><p class="form-note" id="form-note">Contact delivery is being set up. You can prepare and copy your enquiry below; your details won’t be sent or stored.</p><button class="button dark" type="submit">Prepare enquiry ${arrow}</button><div id="contact-status" class="contact-status hidden" role="status"></div></form></section>`;
-  document.querySelector('form').addEventListener('submit', async e => {
-    e.preventDefault();
-    const data = new FormData(e.target);
-    const message = `Hello Gym4Work,\n\nI’m interested in ${data.get('audience') === 'gym' ? 'becoming a gym partner' : 'gym memberships for our company'}.\n\nOrganisation: ${data.get('organisation')}\nName: ${data.get('name')}\nEmail: ${data.get('email')}`;
+  main.innerHTML = `<section class="contact-page"><div class="overline">LET’S MAKE THE CONNECTION</div><h1>${company ? 'A better fit for your people.' : 'Your next members start here.'}</h1><p>${company ? 'Tell us a little about your company. We’ll help you get started.' : 'Tell us how to reach you. We’ll follow up and prepare your gym’s profile and offer for you.'}</p><form class="contact-form" action="https://formspree.io/f/xrpblqar" method="POST"><div class="field"><label for="audience">I’m getting in touch for</label><select id="audience" name="audience"><option value="gym" ${company?'':'selected'}>A gym</option><option value="company" ${company?'selected':''}>A company</option></select></div><div class="field"><label for="organisation">Gym or company name</label><input id="organisation" name="organisation" autocomplete="organization" required maxlength="150" placeholder="Your organisation"></div><div class="field"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" required maxlength="100" placeholder="First and last name"></div><div class="field"><label for="email">Work email</label><input id="email" type="email" name="email" autocomplete="email" required maxlength="254" placeholder="you@company.com"></div><p class="form-note" id="form-note">Send us your details and we’ll get in touch about your gym or company.</p><button class="button dark" type="submit">Send enquiry ${arrow}</button><div id="contact-status" class="contact-status hidden" role="status"></div></form></section>`;
+  const form = document.querySelector('.contact-form');
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    const button = form.querySelector('button[type="submit"]');
+    if (button.disabled || !form.reportValidity()) return;
     const status = document.querySelector('#contact-status');
-    status.replaceChildren();
-    const title = document.createElement('p'); title.textContent = 'Your enquiry is ready. It has not been sent.';
-    const preview = document.createElement('pre'); preview.textContent = message; preview.style.cssText = 'white-space:pre-wrap;font:inherit;font-size:14px;overflow-wrap:anywhere';
-    const copy = document.createElement('button'); copy.type='button';copy.className='button light';copy.textContent='Copy enquiry';
-    copy.onclick = async () => { try { await navigator.clipboard.writeText(message); copy.textContent='Copied'; } catch { copy.textContent='Select and copy the text above'; } };
-    status.append(title,preview,copy);status.classList.remove('hidden');
+    const originalLabel = button.innerHTML;
+    const data = new FormData(form);
+    data.set('message', 'Gym4Work enquiry from ' + data.get('organisation') + ' about ' + (data.get('audience') === 'gym' ? 'becoming a gym partner.' : 'company gym memberships.'));
+    button.disabled = true;
+    button.textContent = 'Sending…';
+    form.setAttribute('aria-busy', 'true');
+    status.setAttribute('role', 'status');
+    status.textContent = 'Sending your enquiry…';
+    status.classList.remove('hidden');
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST', body: data, headers: { Accept: 'application/json' },
+      });
+      if (!response.ok) {
+        const result = await response.json().catch(() => ({}));
+        const message = Array.isArray(result.errors) ? result.errors.map(error => error.message).filter(Boolean).join(' ') : '';
+        throw new Error(message || 'Your enquiry could not be sent. Please try again.');
+      }
+      form.reset();
+      status.textContent = 'Thanks! Your enquiry has been sent. We’ll be in touch.';
+    } catch (error) {
+      status.setAttribute('role', 'alert');
+      status.textContent = error instanceof TypeError
+        ? 'We couldn’t confirm your enquiry was sent. Check your connection and try again. Your details are still here.'
+        : error.message;
+    } finally {
+      button.disabled = false;
+      button.innerHTML = originalLabel;
+      form.removeAttribute('aria-busy');
+    }
   });
 } else if (path !== '/') {
   document.title = 'Page not found | Gym4Work';
