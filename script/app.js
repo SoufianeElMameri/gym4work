@@ -94,6 +94,35 @@ if (memberOptions.length) {
     {name:'Chloe', location:'Dublin 6', gym:'West Wood Club', theme:'westwood', logo:'./assets/west-wood.png'}
   ];
   const card = document.querySelector('.access-card');
+  // Move the existing label and line together; preserve their CSS orientation.
+  const pointer = document.querySelector('.membership-pointer');
+  const pointerLine = pointer.querySelector('i');
+  function positionMembershipPointer() {
+    const cardRect = card.getBoundingClientRect();
+    const rotation = new DOMMatrixReadOnly(getComputedStyle(card).transform);
+    const cornerX = cardRect.left + cardRect.width / 2
+      - rotation.a * card.offsetWidth / 2 - rotation.c * card.offsetHeight / 2;
+    const cornerY = cardRect.top + cardRect.height / 2
+      - rotation.b * card.offsetWidth / 2 - rotation.d * card.offsetHeight / 2;
+    const lineRect = pointerLine.getBoundingClientRect();
+    const dot = getComputedStyle(pointerLine, '::after');
+    const dotWidth = parseFloat(dot.width);
+    const dotHeight = parseFloat(dot.height);
+    const dotX = lineRect.left + (dot.left !== 'auto' ? parseFloat(dot.left)
+      : lineRect.width - parseFloat(dot.right) - dotWidth) + dotWidth / 2;
+    const dotY = lineRect.top + (dot.top !== 'auto' ? parseFloat(dot.top)
+      : lineRect.height - parseFloat(dot.bottom) - dotHeight) + dotHeight / 2;
+    const position = getComputedStyle(pointer);
+    pointer.style.left = (parseFloat(position.left) + cornerX + 10 - dotX) + 'px';
+    pointer.style.top = (parseFloat(position.top) + cornerY + 10 - dotY) + 'px';
+  }
+  const pointerObserver = new ResizeObserver(positionMembershipPointer);
+  pointerObserver.observe(card);
+  pointerObserver.observe(pointer);
+  pointerObserver.observe(card.parentElement);
+  window.addEventListener('resize', positionMembershipPointer);
+  document.fonts.ready.then(positionMembershipPointer);
+  positionMembershipPointer();
   const play = document.querySelector('.membership-play');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let selected = 0, paused = reducedMotion.matches, swap;

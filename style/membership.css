@@ -102,7 +102,7 @@
 
 .membership-display {
   position:relative;
-  background:#363636;
+  background:white;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -317,7 +317,7 @@
 
 }
 
-@media(min-width:701px) and (max-width:1200px) {
+@media(max-width:1200px) {
   .membership-pointer {
     top:calc(50% - 190px);
     left:8%;
@@ -382,17 +382,7 @@
     max-width:360px
   }
 
-  .membership-pointer {
-    top:35px;
-    left:24px;
-    width:110px;
-    transform:none
-  }
 
-  .membership-pointer span {
-    width:auto;
-    background:none
-  }
 
   .membership-caption {
     bottom:65px
